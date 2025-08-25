@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [currentBrandIndex, setCurrentBrandIndex] = useState(0);
@@ -115,13 +116,13 @@ const Home = () => {
                   zIndex: 1000,
                 }}
               >
-                <a className="dropdown-item" href="/Products" onClick={() => setDropdownOpen(false)}>Products</a>
-                <a className="dropdown-item" href="/Brands" onClick={() => setDropdownOpen(false)}>Brands</a>
-                <a className="dropdown-item" href="/Images" onClick={() => setDropdownOpen(false)}>Photos</a>
+                <Link className="dropdown-item" to="/Products" onClick={() => setDropdownOpen(false)}>Products</Link>
+                <Link className="dropdown-item" to="/Brands" onClick={() => setDropdownOpen(false)}>Brands</Link>
+                <Link className="dropdown-item" to="/Images" onClick={() => setDropdownOpen(false)}>Photos</Link>
                 {isMobile && (
                   <>
                     <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="/" onClick={() => setDropdownOpen(false)}>Home</a>
+                    <Link className="dropdown-item" to="/" onClick={() => setDropdownOpen(false)}>Home</Link>
                     <a className="dropdown-item" href="#contact" onClick={(e) => { e.preventDefault(); scrollToFooter(); }}>Contact Us</a>
                   </>
                 )}
@@ -130,9 +131,9 @@ const Home = () => {
           </div>
 
           {/* CENTER Brand */}
-          <a
+          <Link
             className="navbar-brand fw-bold mx-auto"
-            href="/"
+            to="/"
             style={{
               fontSize: isSmallMobile ? '0.9rem' : isMobile ? '1.1rem' : '1.5rem',
               order: 1,
@@ -141,12 +142,12 @@ const Home = () => {
             }}
           >
             Sri Vinayaka Electricals
-          </a>
+          </Link>
 
           {/* RIGHT Nav (Desktop only) */}
           <div className="d-none d-lg-flex align-items-center" style={{ order: 2 }}>
             <ul className="navbar-nav">
-              <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
+              <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
               <li className="nav-item">
                 <a className="nav-link" href="#contact" onClick={(e) => { e.preventDefault(); scrollToFooter(); }}>Contact Us</a>
               </li>
@@ -263,15 +264,6 @@ const Home = () => {
                 <li style={{ marginBottom: '0.5rem', fontSize: isSmallMobile ? '0.8rem' : (isMobile ? '0.9rem' : '1rem') }}>📞 +91 9880014760</li>
               </ul>
             </div>
-            {/* <div className="col-12 col-md-6 col-lg-4 mb-3">
-              <h5 style={{ fontSize: isSmallMobile ? '0.9rem' : (isMobile ? '1rem' : '1.25rem') }}>Follow Us</h5>
-              <div style={{ display: 'flex', justifyContent: isMobile ? 'center' : 'flex-start', gap: '0.8rem' }}>
-                <a href="#" style={{ color: 'white', fontSize: isSmallMobile ? '1rem' : '1.2rem' }}>📘</a>
-                <a href="#" style={{ color: 'white', fontSize: isSmallMobile ? '1rem' : '1.2rem' }}>🐦</a>
-                <a href="#" style={{ color: 'white', fontSize: isSmallMobile ? '1rem' : '1.2rem' }}>📷</a>
-                <a href="#" style={{ color: 'white', fontSize: isSmallMobile ? '1rem' : '1.2rem' }}>📺</a>
-              </div>
-            </div> */}
           </div>
           <hr style={{ borderColor: 'rgba(255,255,255,0.1)', margin: '1rem 0' }} />
           <div className="text-center">
