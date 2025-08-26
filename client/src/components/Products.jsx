@@ -17,8 +17,9 @@ function Products() {
     { id: 6, name: "Switches and Related Items", logo: "/images/Home prod.jpeg", category: "Electronic Items" },
     { id: 7, name: "Wires", logo: "/images/wires.webp", category: "Wires of Different Types" },
     { id: 8, name: "Ball Bearings", logo: "/images/Ball Bearing.png", category: "Bearings" },
-    { id: 9, name: "Bulbs and Tube Lights", logo: "/images/Bulbs.jpg", category: "PVC Pipes And Fittings" },
-    { id: 10, name: "Generator Parts", logo: "/images/generator part.webp", category: "Electronic Parts" },
+    { id: 9, name: "Bulbs and Tube Lights", logo: "/images/Bulbs.jpg", category: "Lights" },
+    { id: 10, name: "BoreWell Cable", logo: "/images/bore cable.jpg", category: "Cables" },
+    { id: 11, name: "Generator Parts", logo: "/images/generator part.webp", category: "Electronic Parts" },
    
     
   ];
