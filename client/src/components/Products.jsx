@@ -1,22 +1,30 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from 'react';
 
 function Products() {
   const footerRef = useRef(null);
   const dropdownRef = useRef(null);
-
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
-  const [isSmallMobile, setIsSmallMobile] = useState(window.innerWidth < 375);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
+  const [isSmallMobile, setIsSmallMobile] = useState(window.innerWidth < 400);
 
-  // Resize handler
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 992);
-      setIsSmallMobile(window.innerWidth < 375);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  // Sample brand data with images
+  const brands = [
+    { id: 1, name: "Open Well", logo: "/images/open well.jpeg", category: "Pumps & Motors" },
+    { id: 2, name: "Borewell", logo: "/images/borewell pumps.png", category: "Pumps & Motors" },
+    { id: 3, name: "PVC Pipe", logo: "/images/pvc pipe fittings.jpeg", category: "Length Pipes & Fittings" },
+    { id: 4, name: "Fittings", logo: "/images/submersible-fitting.webp", category: "Borewell & Open Well Related Fittings" },
+    { id: 5, name: "Panel Boards", logo: "/images/Panel Boards.webp", category: "Pump Controll Box" },
+    { id: 6, name: "Switches and Related Items", logo: "/images/Home prod.jpeg", category: "Electronic Items" },
+    { id: 7, name: "Ball Bearings", logo: "/images/Ball Bearing.png", category: "Bearings" },
+    { id: 8, name: "Bulbs and Tube Lights", logo: "/images/Bulbs.jpg", category: "PVC Pipes And Fittings" },
+    { id: 9, name: "Generator Parts", logo: "/images/generator part.webp", category: "Electronic Parts" },
+    
+  ];
+
+  // Toggle dropdown menu
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -25,20 +33,32 @@ function Products() {
         setDropdownOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
-  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  // Handle window resize for mobile detection
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 992);
+      setIsSmallMobile(window.innerWidth < 400);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const scrollToFooter = () => {
     if (footerRef.current) {
-      footerRef.current.scrollIntoView({ behavior: "smooth" });
+      footerRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       {/* Navigation */}
       <nav
         className="navbar navbar-expand-lg navbar-dark fixed-top"
@@ -114,7 +134,7 @@ function Products() {
               padding: '0 0.25rem',
             }}
           >
-            Sri Vinayaka Electricals
+             Sri Vinayaka Electricals
           </a>
 
           {/* RIGHT Nav (Desktop only) */}
@@ -129,34 +149,31 @@ function Products() {
         </div>
       </nav>
 
-      {/* Main Content */}
-      <div className="container py-5" style={{ flex: 1, paddingTop: '50px', marginTop: '20px' }}>
-        <h1 className="text-center mb-4" style={{ color: "#28a745" }}>
-          Our Products
-        </h1>
+      {/* Main Page Content */}
+      <div className="container py-5" style={{ flex: '1', paddingTop: isSmallMobile ? '60px' : '70px', marginTop: '10px' }}>
+        <h1 className="text-center mb-4" style={{ color: '#28a745' , marginTop:'20px' }}>Available Products</h1>
         <p className="text-center mb-5">
-          Discover our wide range of agricultural and electrical products designed for sustainability and efficiency.
+            Discover our wide range of agricultural and commercial based electrical products designed for sustainability and efficiency.
         </p>
-        <div className="row">
-          {[
-            {
-              title: "Agricultural Pumps",
-              desc: "High-efficiency pumps for all your irrigation needs.",
-            },
-            {
-              title: "Solar Solutions",
-              desc: "Eco-friendly solar power systems for farms and homes.",
-            },
-            {
-              title: "Electrical Components",
-              desc: "Quality wiring, switches, and electrical accessories.",
-            },
-          ].map((product, idx) => (
-            <div key={idx} className="col-md-4 mb-4">
-              <div className="card h-100">
-                <div className="card-body text-center">
-                  <h5 className="card-title">{product.title}</h5>
-                  <p className="card-text">{product.desc}</p>
+
+        {/* Brand cards - similar to services in Home component */}
+        <div className="row justify-content-center">
+          {brands.map((brand) => (
+            <div key={brand.id} className="col-6 col-md-4 col-lg-3 mb-4">
+              <div className="card h-100 text-center border-0" style={{ boxShadow: '0 0.125rem 0.25rem rgba(0,0,0,0.075)' }}>
+                <div className="card-body d-flex flex-column justify-content-center p-3">
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    style={{
+                      width: '100%',
+                      height: '100px',
+                      objectFit: 'contain',
+                      marginBottom: '10px',
+                    }}
+                  />
+                  <h5 className="card-title" style={{ fontSize: isSmallMobile ? '0.8rem' : isMobile ? '0.9rem' : '1rem' }}>{brand.name}</h5>
+                  <small className="text-muted">{brand.category}</small>
                 </div>
               </div>
             </div>
@@ -177,16 +194,16 @@ function Products() {
         <div className="container">
           <div className="row justify-content-center text-center text-md-start">
             <div className="col-12 col-md-6 col-lg-4 mb-3">
-  <h5 style={{ fontSize: isSmallMobile ? '0.9rem' : (isMobile ? '1rem' : '1.25rem') }}>
-    Sri Vinayaka Electricals, Moodbidri
-  </h5>
-  <p style={{ fontSize: isSmallMobile ? '0.8rem' : (isMobile ? '0.9rem' : '1rem'), marginBottom: '0.5rem' }}>
-    Sales And Service
-  </p>
-  <small style={{ fontSize: isSmallMobile ? '0.75rem' : (isMobile ? '0.85rem' : '0.9rem'), opacity: 0.85 }}>
-    Proprietor: Dinesh P Salian
-  </small>
-</div>
+              <h5 style={{ fontSize: isSmallMobile ? '0.9rem' : (isMobile ? '1rem' : '1.25rem') }}>
+                Sri Vinayaka Electricals, Moodbidri
+              </h5>
+              <p style={{ fontSize: isSmallMobile ? '0.8rem' : (isMobile ? '0.9rem' : '1rem'), marginBottom: '0.5rem' }}>
+                Sales And Service
+              </p>
+              <small style={{ fontSize: isSmallMobile ? '0.75rem' : (isMobile ? '0.85rem' : '0.9rem'), opacity: 0.85 }}>
+                Proprietor: Dinesh P Salian
+              </small>
+            </div>
             <div className="col-12 col-md-6 col-lg-4 mb-3">
               <h5 style={{ fontSize: isSmallMobile ? '0.9rem' : (isMobile ? '1rem' : '1.25rem') }}>Contact Details</h5>
               <ul className="list-unstyled">
@@ -204,15 +221,6 @@ function Products() {
                 <li style={{ marginBottom: '0.5rem', fontSize: isSmallMobile ? '0.8rem' : (isMobile ? '0.9rem' : '1rem') }}>📞 +91 9880014760</li>
               </ul>
             </div>
-            {/* <div className="col-12 col-md-6 col-lg-4 mb-3">
-              <h5 style={{ fontSize: isSmallMobile ? '0.9rem' : (isMobile ? '1rem' : '1.25rem') }}>Follow Us</h5>
-              <div style={{ display: 'flex', justifyContent: isMobile ? 'center' : 'flex-start', gap: '0.8rem' }}>
-                <a href="#" style={{ color: 'white', fontSize: isSmallMobile ? '1rem' : '1.2rem' }}>📘</a>
-                <a href="#" style={{ color: 'white', fontSize: isSmallMobile ? '1rem' : '1.2rem' }}>🐦</a>
-                <a href="#" style={{ color: 'white', fontSize: isSmallMobile ? '1rem' : '1.2rem' }}>📷</a>
-                <a href="#" style={{ color: 'white', fontSize: isSmallMobile ? '1rem' : '1.2rem' }}>📺</a>
-              </div>
-            </div> */}
           </div>
           <hr style={{ borderColor: 'rgba(255,255,255,0.1)', margin: '1rem 0' }} />
           <div className="text-center">
