@@ -149,7 +149,7 @@ function Brands() {
       </nav>
 
       {/* Main Page Content */}
-      <div className="container py-5" style={{ flex: '1', paddingTop: isSmallMobile ? '60px' : '70px', marginTop: '10px' }}>
+      <div className="container py-5" style={{ flex: '1', paddingTop: isSmallMobile ? '100px' : '70px', marginTop: '10px' }}>
         <h1 className="text-center mb-4" style={{ color: '#28a745', marginTop:'20px' }}>Available Brands</h1>
         <p className="text-center mb-5">
           We partner with leading brands to provide the highest quality agricultural and electrical products.
