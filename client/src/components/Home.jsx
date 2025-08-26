@@ -175,7 +175,7 @@ const Home = () => {
             color: '#156829', textTransform: 'uppercase', background: 'linear-gradient(90deg,#156829,#28a745)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
             fontSize: isSmallMobile ? '1.2rem' : isMobile ? '1.5rem' : '2.5rem',
-          }}>SRI </h1>
+          }}>SRI VINAYAKA ELECTRICALS MOODBIDRI</h1>
           <p className="lead" style={{ fontSize: isSmallMobile ? '0.8rem' : isMobile ? '0.9rem' : '1.25rem', color: '#2c3e50' }}>SINCE 1998</p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center flex-wrap">
             <button className="btn btn-success btn-lg px-4 gap-3 mb-2" style={{ backgroundColor: '#156829', borderColor: '#156829' }} onClick={scrollToServices}>Available Services</button>
