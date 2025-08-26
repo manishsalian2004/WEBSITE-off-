@@ -15,9 +15,11 @@ function Products() {
     { id: 4, name: "Fittings", logo: "/images/submersible-fitting.webp", category: "Borewell & Open Well Related Fittings" },
     { id: 5, name: "Panel Boards", logo: "/images/Panel Boards.webp", category: "Pump Controll Box" },
     { id: 6, name: "Switches and Related Items", logo: "/images/Home prod.jpeg", category: "Electronic Items" },
-    { id: 7, name: "Ball Bearings", logo: "/images/Ball Bearing.png", category: "Bearings" },
-    { id: 8, name: "Bulbs and Tube Lights", logo: "/images/Bulbs.jpg", category: "PVC Pipes And Fittings" },
-    { id: 9, name: "Generator Parts", logo: "/images/generator part.webp", category: "Electronic Parts" },
+    { id: 7, name: "Wires", logo: "/images/wires.webp", category: "Wires of Different Types" },
+    { id: 8, name: "Ball Bearings", logo: "/images/Ball Bearing.png", category: "Bearings" },
+    { id: 9, name: "Bulbs and Tube Lights", logo: "/images/Bulbs.jpg", category: "PVC Pipes And Fittings" },
+    { id: 10, name: "Generator Parts", logo: "/images/generator part.webp", category: "Electronic Parts" },
+   
     
   ];
 
