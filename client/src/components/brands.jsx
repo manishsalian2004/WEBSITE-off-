@@ -7,6 +7,19 @@ function Brands() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
   const [isSmallMobile, setIsSmallMobile] = useState(window.innerWidth < 400);
 
+  // Sample brand data with images
+  const brands = [
+    { id: 1, name: "Mahendra", logo: "/images/Mahendra.jpeg", category: "Pumps & Motors" },
+    { id: 2, name: "KSB", logo: "/images/KSB.png", category: "Pumps & Motors" },
+    { id: 3, name: "Tormac", logo: "/images/Tormac.jpg", category: "Pumps & Motors" },
+    { id: 4, name: "Lubi", logo: "/images/Lubi.jpg", category: "Pumps & Motors" },
+    { id: 5, name: "Hi-Flow", logo: "/images/Hi-Flow.webp", category: "Pumps & Motors" },
+    { id: 6, name: "Himalaya", logo: "/images/Himalaya.webp", category: "Pumps & Motors" },
+    { id: 7, name: "Astral Borewell Pipes", logo: "/images/Astral borewell pipes.jpg", category: "Borewell Pipes" },
+    { id: 7, name: "Sudhakar Pipes And Fittings", logo: "/images/sudhakar-pipes.jpg", category: "PVC Pipes And Fittings" },
+    
+  ];
+
   // Toggle dropdown menu
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -135,54 +148,35 @@ function Brands() {
         </div>
       </nav>
 
-
       {/* Main Page Content */}
-      <div className="container py-5" style={{ flex: '1', paddingTop: '50px', marginTop: '10px' }}>
-        <h1 className="text-center mb-4" style={{ color: '#28a745' }}>Our Brands</h1>
+      <div className="container py-5" style={{ flex: '1', paddingTop: isSmallMobile ? '60px' : '70px', marginTop: '10px' }}>
+        <h1 className="text-center mb-4" style={{ color: '#28a745' }}>Available Brands</h1>
         <p className="text-center mb-5">
           We partner with leading brands to provide the highest quality agricultural and electrical products.
         </p>
 
-        {/* Brand cards */}
-        <div className="row">
-          <div className="col-md-4 mb-4">
-            <div className="card h-100 text-center">
-              <div className="card-body">
-                <h5 className="card-title">Agricultural Brands</h5>
-                <p className="card-text">Top-quality agricultural equipment and tools from trusted manufacturers.</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card h-100 text-center">
-              <div className="card-body">
-                <h5 className="card-title">Electrical Brands</h5>
-                <p className="card-text">Reliable electrical components and systems from industry leaders.</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card h-100 text-center">
-              <div className="card-body">
-                <h5 className="card-title">Solar Brands</h5>
-                <p className="card-text">Eco-friendly solar solutions from innovative and reputable companies.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Brand Logos */}
-        <div className="mt-5">
-          <h2 className="text-center mb-4">Our Trusted Partners</h2>
-          <div className="row justify-content-center">
-            {["Brand 1", "Brand 2", "Brand 3", "Brand 4"].map((brand, index) => (
-              <div key={index} className="col-6 col-md-3 text-center mb-4">
-                <div className="bg-light p-4 rounded">
-                  <h5>{brand}</h5>
+        {/* Brand cards - similar to services in Home component */}
+        <div className="row justify-content-center">
+          {brands.map((brand) => (
+            <div key={brand.id} className="col-6 col-md-4 col-lg-3 mb-4">
+              <div className="card h-100 text-center border-0" style={{ boxShadow: '0 0.125rem 0.25rem rgba(0,0,0,0.075)' }}>
+                <div className="card-body d-flex flex-column justify-content-center p-3">
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    style={{
+                      width: '100%',
+                      height: '100px',
+                      objectFit: 'contain',
+                      marginBottom: '10px',
+                    }}
+                  />
+                  <h5 className="card-title" style={{ fontSize: isSmallMobile ? '0.8rem' : isMobile ? '0.9rem' : '1rem' }}>{brand.name}</h5>
+                  <small className="text-muted">{brand.category}</small>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -199,16 +193,16 @@ function Brands() {
         <div className="container">
           <div className="row justify-content-center text-center text-md-start">
             <div className="col-12 col-md-6 col-lg-4 mb-3">
-  <h5 style={{ fontSize: isSmallMobile ? '0.9rem' : (isMobile ? '1rem' : '1.25rem') }}>
-    Sri Vinayaka Electricals, Moodbidri
-  </h5>
-  <p style={{ fontSize: isSmallMobile ? '0.8rem' : (isMobile ? '0.9rem' : '1rem'), marginBottom: '0.5rem' }}>
-    Sales And Service
-  </p>
-  <small style={{ fontSize: isSmallMobile ? '0.75rem' : (isMobile ? '0.85rem' : '0.9rem'), opacity: 0.85 }}>
-    Proprietor: Dinesh P Salian
-  </small>
-</div>
+              <h5 style={{ fontSize: isSmallMobile ? '0.9rem' : (isMobile ? '1rem' : '1.25rem') }}>
+                Sri Vinayaka Electricals, Moodbidri
+              </h5>
+              <p style={{ fontSize: isSmallMobile ? '0.8rem' : (isMobile ? '0.9rem' : '1rem'), marginBottom: '0.5rem' }}>
+                Sales And Service
+              </p>
+              <small style={{ fontSize: isSmallMobile ? '0.75rem' : (isMobile ? '0.85rem' : '0.9rem'), opacity: 0.85 }}>
+                Proprietor: Dinesh P Salian
+              </small>
+            </div>
             <div className="col-12 col-md-6 col-lg-4 mb-3">
               <h5 style={{ fontSize: isSmallMobile ? '0.9rem' : (isMobile ? '1rem' : '1.25rem') }}>Contact Details</h5>
               <ul className="list-unstyled">
@@ -226,15 +220,6 @@ function Brands() {
                 <li style={{ marginBottom: '0.5rem', fontSize: isSmallMobile ? '0.8rem' : (isMobile ? '0.9rem' : '1rem') }}>📞 +91 9880014760</li>
               </ul>
             </div>
-            {/* <div className="col-12 col-md-6 col-lg-4 mb-3">
-              <h5 style={{ fontSize: isSmallMobile ? '0.9rem' : (isMobile ? '1rem' : '1.25rem') }}>Follow Us</h5>
-              <div style={{ display: 'flex', justifyContent: isMobile ? 'center' : 'flex-start', gap: '0.8rem' }}>
-                <a href="#" style={{ color: 'white', fontSize: isSmallMobile ? '1rem' : '1.2rem' }}>📘</a>
-                <a href="#" style={{ color: 'white', fontSize: isSmallMobile ? '1rem' : '1.2rem' }}>🐦</a>
-                <a href="#" style={{ color: 'white', fontSize: isSmallMobile ? '1rem' : '1.2rem' }}>📷</a>
-                <a href="#" style={{ color: 'white', fontSize: isSmallMobile ? '1rem' : '1.2rem' }}>📺</a>
-              </div>
-            </div> */}
           </div>
           <hr style={{ borderColor: 'rgba(255,255,255,0.1)', margin: '1rem 0' }} />
           <div className="text-center">
