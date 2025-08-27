@@ -147,7 +147,7 @@ function Image() {
 
       {/* MAIN CONTENT (Gallery, Modal, Footer) */}
       <div className="container py-5" style={{ flex: '1', paddingTop: '50px', marginTop: '10px' }}>
-        <h1 className="text-center mb-4" style={{ color: '#156829' , marginTop:'50px' }}>Our Work Gallery</h1>
+        <h1 className="text-center mb-4" style={{ color: '#156829' }}>Our Work Gallery</h1>
         <p className="text-center mb-5 lead">A visual showcase of our electrical services and projects</p>
 
         {/* Featured Image */}
@@ -231,6 +231,8 @@ function Image() {
                   </a>
                 </li>
                 <li style={{ marginBottom: '0.5rem', fontSize: isSmallMobile ? '0.8rem' : (isMobile ? '0.9rem' : '1rem') }}>📞 +91 9880014760</li>
+                                <li style={{ marginBottom: '0.5rem', fontSize: isSmallMobile ? '0.8rem' : (isMobile ? '0.9rem' : '1rem') }}>📞 +91 8197942760</li>
+
               </ul>
             </div>
             {/* <div className="col-12 col-md-6 col-lg-4 mb-3">
