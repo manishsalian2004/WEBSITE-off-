@@ -44,6 +44,7 @@ function Image() {
     { id: 4, src: '/images/JEEP1.jpg' },
     { id: 5, src: '/images/JEEP2.jpg' },
     { id: 6, src: '/images/JEEP3.jpg' },
+     { id: 7, src: '/images/truck.jpg' },
   ];
 
   const primaryImage = images.find((img) => img.isPrimary);
