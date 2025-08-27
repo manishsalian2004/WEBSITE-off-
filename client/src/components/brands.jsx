@@ -17,6 +17,7 @@ function Brands() {
     { id: 6, name: "Himalaya", logo: "/images/Himalaya.webp", category: "Pumps & Motors" },
     { id: 7, name: "Astral Borewell Pipes", logo: "/images/Astral borewell pipes.jpg", category: "Borewell Pipes" },
     { id: 7, name: "Sudhakar Pipes And Fittings", logo: "/images/sudhakar-pipes.jpg", category: "PVC Pipes And Fittings" },
+    { id: 8, name: "Sudhakar Wires", logo: "/images/Sudhakar Wires.jpeg", category: "Wires" },
     
   ];
 
@@ -149,10 +150,10 @@ function Brands() {
       </nav>
 
       {/* Main Page Content */}
-      <div className="container py-5" style={{ flex: '1', paddingTop: isSmallMobile ? '100px' : '70px', marginTop: '10px' }}>
-        <h1 className="text-center mb-4" style={{ color: '#28a745', marginTop:'20px' }}>Available Brands</h1>
+      <div className="container py-5" style={{ flex: '1', paddingTop: isSmallMobile ? '60px' : '70px', marginTop: '10px' }}>
+        <h1 className="text-center mb-4" style={{ color: '#28a745' , marginTop:'20px' }}>Available Brands</h1>
         <p className="text-center mb-5">
-          We partner with leading brands to provide the highest quality agricultural and electrical products.
+          We partner with leading brands to provide the highest quality agricultural and commercial based electrical products.
         </p>
 
         {/* Brand cards - similar to services in Home component */}
@@ -218,6 +219,8 @@ function Brands() {
                   </a>
                 </li>
                 <li style={{ marginBottom: '0.5rem', fontSize: isSmallMobile ? '0.8rem' : (isMobile ? '0.9rem' : '1rem') }}>📞 +91 9880014760</li>
+                                <li style={{ marginBottom: '0.5rem', fontSize: isSmallMobile ? '0.8rem' : (isMobile ? '0.9rem' : '1rem') }}>📞 +91 8197942760</li>
+
               </ul>
             </div>
           </div>
