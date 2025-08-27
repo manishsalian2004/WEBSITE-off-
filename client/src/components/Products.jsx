@@ -222,6 +222,8 @@ function Products() {
                   </a>
                 </li>
                 <li style={{ marginBottom: '0.5rem', fontSize: isSmallMobile ? '0.8rem' : (isMobile ? '0.9rem' : '1rem') }}>📞 +91 9880014760</li>
+                                <li style={{ marginBottom: '0.5rem', fontSize: isSmallMobile ? '0.8rem' : (isMobile ? '0.9rem' : '1rem') }}>📞 +91 8197942760</li>
+
               </ul>
             </div>
           </div>
