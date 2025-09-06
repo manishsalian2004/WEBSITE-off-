@@ -74,6 +74,7 @@ function Image() {
               style={{
                 backgroundColor: '#156829',
                 border: 'none',
+                marginLeft: '20px',
                 padding: '0.25rem',
                 width: isSmallMobile ? '32px' : '40px',
                 height: isSmallMobile ? '32px' : '40px',
@@ -84,9 +85,20 @@ function Image() {
               }}
               aria-label="Menu"
             >
-              <span style={{ height: '2px', width: isSmallMobile ? '16px' : '20px', backgroundColor: 'white', margin: '2px 0', borderRadius: '1px' }}></span>
-              <span style={{ height: '2px', width: isSmallMobile ? '16px' : '20px', backgroundColor: 'white', margin: '2px 0', borderRadius: '1px' }}></span>
-              <span style={{ height: '2px', width: isSmallMobile ? '16px' : '20px', backgroundColor: 'white', margin: '2px 0', borderRadius: '1px' }}></span>
+               <span style={{ display: 'inline-flex', alignItems: 'center', color: 'white', fontSize: isSmallMobile ? '14px' : '16px' , borderStyle:'solid',padding:'20%', borderRadius:'10%',borderWidth:'0.1px', borderColor:'black'}}>
+  More
+  <svg 
+    width={isSmallMobile ? '12' : '14'} 
+    height={isSmallMobile ? '12' : '14'} 
+    viewBox="0 0 16 16" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+    style={{ marginLeft: '4px' }}
+  >
+    <path d="M4 6 L8 10 L12 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+</span>
+
             </button>
 
             {dropdownOpen && (
