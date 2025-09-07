@@ -173,7 +173,7 @@ const Home = () => {
         style={{
           paddingTop: isSmallMobile ? '60px' : isMobile ? '70px' : '90px',
           backgroundColor: '#f8f9fa',
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('/images/flushing.png')`,
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('/images/flushing.webp')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           minHeight: isSmallMobile ? '40vh' : isMobile ? '50vh' : '80vh',
