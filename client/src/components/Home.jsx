@@ -12,10 +12,10 @@ const Home = () => {
 
   // Sample brand data
   const brands = [
-    { id: 1, name: "Open Well And Borewell Motor Rewinding", logo: "/images/winding.png", description: "" },
+    { id: 1, name: "Open Well And Borewell Motor Rewinding", logo: "/images/winding.webp", description: "" },
     { id: 2, name: "Generator Armature Repair", logo: "/images/generator.webp", description: "" },
-    { id: 3, name: "Borewell Flushing", logo: "/images/flush.png", description: "" },
-    { id: 4, name: "Borewell Pump Re-installation", logo: "/images/reinstallation.png", description: "" },
+    { id: 3, name: "Borewell Flushing", logo: "/images/flush.webp", description: "" },
+    { id: 4, name: "Borewell Pump Re-installation", logo: "/images/reinstallation.webp", description: "" },
   ];
 
   // Screen size detection
