@@ -120,6 +120,8 @@ function Image() {
                 <a className="dropdown-item" href="/Products" onClick={() => setDropdownOpen(false)}>Products</a>
                 <a className="dropdown-item" href="/Brands" onClick={() => setDropdownOpen(false)}>Brands</a>
                 <a className="dropdown-item" href="/Images" onClick={() => setDropdownOpen(false)}>Photos</a>
+                <a className="dropdown-item" href="/Video" onClick={() => setDropdownOpen(false)}>Videos</a>
+
                 {isMobile && (
                   <>
                     <div className="dropdown-divider"></div>
@@ -160,7 +162,7 @@ function Image() {
 
       {/* MAIN CONTENT (Gallery, Modal, Footer) */}
       <div className="container py-5" style={{ flex: '1', paddingTop: '50px', marginTop: '10px' }}>
-        <h1 className="text-center mb-4" style={{ color: '#156829', marginTop:'10px' }}>Our Work Gallery</h1>
+        <h1 className="text-center mb-4" style={{ color: '#156829' , marginTop:'10px'}}>Our Work Gallery</h1>
         <p className="text-center mb-5 lead">A visual showcase of our electrical services and projects</p>
 
         {/* Featured Image */}
