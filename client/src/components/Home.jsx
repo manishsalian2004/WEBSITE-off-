@@ -131,6 +131,8 @@ const Home = () => {
                 <Link className="dropdown-item" to="/Products" onClick={() => setDropdownOpen(false)}>Products</Link>
                 <Link className="dropdown-item" to="/Brands" onClick={() => setDropdownOpen(false)}>Brands</Link>
                 <Link className="dropdown-item" to="/Images" onClick={() => setDropdownOpen(false)}>Photos</Link>
+                <Link className="dropdown-item" to="/Video" onClick={() => setDropdownOpen(false)}>Videos</Link>
+
                 {isMobile && (
                   <>
                     <div className="dropdown-divider"></div>
