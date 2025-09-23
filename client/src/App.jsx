@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Products from './components/Products';
 import Brands from './components/brands';
 import Images from './components/Image';
+import Video from './components/video';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/Products" element={<Products />} />
         <Route path="/Brands" element={<Brands />} />
         <Route path="/Images" element={<Images />} />
+        <Route path="/Video" element={<Video />} />
       </Routes>
     </BrowserRouter>
   );
