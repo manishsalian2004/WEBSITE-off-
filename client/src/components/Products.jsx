@@ -127,6 +127,7 @@ function Products() {
                 <a className="dropdown-item" href="/Products" onClick={() => setDropdownOpen(false)}>Products</a>
                 <a className="dropdown-item" href="/Brands" onClick={() => setDropdownOpen(false)}>Brands</a>
                 <a className="dropdown-item" href="/Images" onClick={() => setDropdownOpen(false)}>Photos</a>
+                <a className="dropdown-item" href="/Video" onClick={() => setDropdownOpen(false)}>Videos</a>
                 {isMobile && (
                   <>
                     <div className="dropdown-divider"></div>
