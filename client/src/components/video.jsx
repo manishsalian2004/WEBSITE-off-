@@ -8,6 +8,11 @@ function Video() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
+  // 🔴 NEW — modal video ref
+  const modalVideoRef = useRef(null);
+  // 🔴 NEW — refs for all gallery videos
+  const galleryVideoRefs = useRef([]);
+
   // Handle responsiveness
   useEffect(() => {
     const handleResize = () => {
@@ -37,17 +42,68 @@ function Video() {
   }, []);
 
   // Sample videos
-  const videos = [{ id: 1, src: "/Videos/detail.mp4", isPrimary: true }];
+  const videos = [
+    { id: 1, src: "/Videos/detail.mp4", isPrimary: true },
+    { id: 2, src: "/Videos/flushing_truck.mp4", isPrimary: false }
+  ];
 
   const primaryVideo = videos.find((vid) => vid.isPrimary);
   const otherVideos = videos.filter((vid) => !vid.isPrimary);
 
-  const openModal = (video) => setSelectedVideo(video);
-  const closeModal = () => setSelectedVideo(null);
+  const openModal = (video) => {
+    // 🔴 NEW — Pause all gallery videos when opening modal
+    pauseAllGalleryVideos();
+    setSelectedVideo(video);
+  };
+
+  // 🔴 UPDATED — Pause modal video before closing
+  const closeModal = () => {
+    if (modalVideoRef.current) {
+      modalVideoRef.current.pause();
+    }
+    setSelectedVideo(null);
+  };
+
+  // 🔴 NEW — Function to pause all gallery videos
+  const pauseAllGalleryVideos = () => {
+    galleryVideoRefs.current.forEach(ref => {
+      if (ref && !ref.paused) {
+        ref.pause();
+      }
+    });
+  };
+
+  // 🔴 NEW — Function to handle gallery video play
+  const handleGalleryVideoPlay = (currentVideoId) => {
+    // Pause all other gallery videos
+    galleryVideoRefs.current.forEach((ref, index) => {
+      if (ref && index !== currentVideoId && !ref.paused) {
+        ref.pause();
+      }
+    });
+    
+    // Pause modal video if it's playing
+    if (modalVideoRef.current && !modalVideoRef.current.paused) {
+      modalVideoRef.current.pause();
+    }
+  };
+
+  // 🔴 NEW — Function to handle modal video play
+  const handleModalVideoPlay = () => {
+    // Pause all gallery videos when modal video plays
+    pauseAllGalleryVideos();
+  };
+
+  // 🔴 NEW — Initialize galleryVideoRefs array
+  useEffect(() => {
+    // Initialize the refs array with the correct length
+    const totalVideos = videos.length;
+    galleryVideoRefs.current = galleryVideoRefs.current.slice(0, totalVideos);
+  }, []);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      {/* ✅ SAME HEADER + MORE BUTTON */}
+      {/* HEADER */}
       <nav
         className="navbar navbar-expand-lg navbar-dark fixed-top"
         style={{
@@ -90,7 +146,7 @@ function Video() {
                 <a className="dropdown-item" href="/Products" onClick={() => setDropdownOpen(false)}>Products</a>
                 <a className="dropdown-item" href="/Brands" onClick={() => setDropdownOpen(false)}>Brands</a>
                 <a className="dropdown-item" href="/Images" onClick={() => setDropdownOpen(false)}>Photos</a>
-                <a className="dropdown-item" href="/Videos" onClick={() => setDropdownOpen(false)}>Videos</a>
+                <a className="dropdown-item" href="/" onClick={() => setDropdownOpen(false)}>Home</a>
               </div>
             )}
           </div>
@@ -100,18 +156,14 @@ function Video() {
             className="navbar-brand fw-bold mx-auto"
             href="/"
             style={{
-              fontSize: isSmallMobile
-                ? "0.9rem"
-                : isMobile
-                ? "1.1rem"
-                : "1.5rem",
+              fontSize: isSmallMobile ? "0.9rem" : isMobile ? "1.1rem" : "1.5rem",
               textAlign: "center",
             }}
           >
             Sri Vinayaka Electricals
           </a>
 
-          {/* Right side (empty for balance) */}
+          {/* Right side empty */}
           <div style={{ width: "40px" }}></div>
         </div>
       </nav>
@@ -140,10 +192,18 @@ function Video() {
                   style={{ height: "500px", overflow: "hidden" }}
                 >
                   <video
+                    ref={el => {
+                      if (el) galleryVideoRefs.current[0] = el;
+                    }}
                     src={primaryVideo.src}
                     className="w-100 h-100"
                     style={{ objectFit: "contain", maxHeight: "100%" }}
                     controls
+                    onPlay={() => handleGalleryVideoPlay(0)}
+                    onClick={(e) => {
+                      // Prevent card click when clicking on video controls
+                      e.stopPropagation();
+                    }}
                   />
                 </div>
               </div>
@@ -153,7 +213,7 @@ function Video() {
 
         {/* Other Videos */}
         <div className="row">
-          {otherVideos.map((video) => (
+          {otherVideos.map((video, index) => (
             <div key={video.id} className="col-lg-4 col-md-6 mb-4">
               <div
                 className="card h-100 border-0 shadow-sm overflow-hidden bg-light gallery-item"
@@ -165,10 +225,18 @@ function Video() {
                   style={{ height: "250px", overflow: "hidden" }}
                 >
                   <video
+                    ref={el => {
+                      if (el) galleryVideoRefs.current[index + 1] = el;
+                    }}
                     src={video.src}
                     className="w-100 h-100"
                     style={{ objectFit: "contain", maxHeight: "100%" }}
                     controls
+                    onPlay={() => handleGalleryVideoPlay(index + 1)}
+                    onClick={(e) => {
+                      // Prevent card click when clicking on video controls
+                      e.stopPropagation();
+                    }}
                   />
                 </div>
               </div>
@@ -177,7 +245,7 @@ function Video() {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* MODAL */}
       {selectedVideo && (
         <div
           className="modal fade show d-block"
@@ -191,17 +259,22 @@ function Video() {
                 <button
                   type="button"
                   className="btn-close btn-close-white"
-                  onClick={closeModal}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    closeModal();
+                  }}
                   style={{ fontSize: "1.5rem" }}
                 ></button>
               </div>
               <div className="modal-body d-flex justify-content-center align-items-center h-100">
                 <video
+                  ref={modalVideoRef}
                   src={selectedVideo.src}
                   className="w-100 h-100"
                   style={{ maxHeight: "90vh", objectFit: "contain" }}
                   controls
                   autoPlay
+                  onPlay={handleModalVideoPlay}
                   onClick={(e) => e.stopPropagation()}
                 />
               </div>
@@ -210,7 +283,7 @@ function Video() {
         </div>
       )}
 
-      {/* ✅ SAME FOOTER */}
+      {/* FOOTER */}
       <footer
         ref={footerRef}
         style={{
@@ -225,22 +298,14 @@ function Video() {
             <div className="col-12 col-md-6 col-lg-4 mb-3">
               <h5
                 style={{
-                  fontSize: isSmallMobile
-                    ? "0.9rem"
-                    : isMobile
-                    ? "1rem"
-                    : "1.25rem",
+                  fontSize: isSmallMobile ? "0.9rem" : isMobile ? "1rem" : "1.25rem",
                 }}
               >
                 Sri Vinayaka Electricals, Moodbidri
               </h5>
               <p
                 style={{
-                  fontSize: isSmallMobile
-                    ? "0.8rem"
-                    : isMobile
-                    ? "0.9rem"
-                    : "1rem",
+                  fontSize: isSmallMobile ? "0.8rem" : isMobile ? "0.9rem" : "1rem",
                   marginBottom: "0.5rem",
                 }}
               >
@@ -248,25 +313,18 @@ function Video() {
               </p>
               <small
                 style={{
-                  fontSize: isSmallMobile
-                    ? "0.75rem"
-                    : isMobile
-                    ? "0.85rem"
-                    : "0.9rem",
+                  fontSize: isSmallMobile ? "0.75rem" : isMobile ? "0.85rem" : "0.9rem",
                   opacity: 0.85,
                 }}
               >
                 Proprietor: Dinesh P Salian
               </small>
             </div>
+
             <div className="col-12 col-md-6 col-lg-4 mb-3">
               <h5
                 style={{
-                  fontSize: isSmallMobile
-                    ? "0.9rem"
-                    : isMobile
-                    ? "1rem"
-                    : "1.25rem",
+                  fontSize: isSmallMobile ? "0.9rem" : isMobile ? "1rem" : "1.25rem",
                 }}
               >
                 Contact Details
@@ -275,11 +333,7 @@ function Video() {
                 <li
                   style={{
                     marginBottom: "0.5rem",
-                    fontSize: isSmallMobile
-                      ? "0.8rem"
-                      : isMobile
-                      ? "0.9rem"
-                      : "1rem",
+                    fontSize: isSmallMobile ? "0.8rem" : isMobile ? "0.9rem" : "1rem",
                   }}
                 >
                   📍
@@ -302,7 +356,9 @@ function Video() {
               </ul>
             </div>
           </div>
+
           <hr style={{ borderColor: "rgba(255,255,255,0.1)", margin: "1rem 0" }} />
+
           <div className="text-center">
             <p className="mb-0" style={{ fontSize: isSmallMobile ? "0.7rem" : "1rem" }}>
               Sri Vinayaka Electricals Since 1998.
@@ -318,6 +374,16 @@ function Video() {
         .gallery-item:hover {
           transform: translateY(-5px);
           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+        }
+        /* Ensure video controls are visible and usable */
+        video::-webkit-media-controls-panel {
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+        video::-webkit-media-controls-play-button,
+        video::-webkit-media-controls-volume-slider,
+        video::-webkit-media-controls-mute-button,
+        video::-webkit-media-controls-fullscreen-button {
+          filter: invert(1);
         }
       `}</style>
     </div>
